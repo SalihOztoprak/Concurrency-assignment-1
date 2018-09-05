@@ -11,7 +11,10 @@ public class Main {
     }
 
     public void run(){
-        selectionSort(generateNumbers(25000));
+        ArrayList<Integer>randomList = new ArrayList<>();
+        randomList=generateNumbers(25000);
+        selectionSort(randomList);
+        System.out.println(randomList.size());
     }
 
 
