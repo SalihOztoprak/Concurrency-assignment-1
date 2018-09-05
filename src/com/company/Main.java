@@ -3,7 +3,6 @@ package com.company;
 import java.util.ArrayList;
 
 public class Main {
-    private long timeTaken = 0;
 
     public static void main(String[] args) {
         new Main().run();
