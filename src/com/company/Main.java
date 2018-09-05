@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Main {
+    private long timeTaken = 0;
 
     public static void main(String[] args) {
         new Main().run();
@@ -16,8 +17,9 @@ public class Main {
         randomList = selectionSort(randomList);
 
         System.out.println(randomList);
-        System.out.println("the size of the list ; "+randomList.size());
-        System.out.println("is the list sorted: "+ isSorted(randomList));
+        System.out.println("Size of list is: " + randomList.size());
+        System.out.println("Is the list sorted: " + isSorted(randomList));
+        System.out.println("Time taken in ms: " + timeTaken);
     }
 
 
@@ -34,28 +36,29 @@ public class Main {
     }
 
 
-    private ArrayList<Integer> selectionSort(ArrayList<Integer> list) {
+    public ArrayList<Integer> selectionSort(ArrayList<Integer> list) {
+        final long startTime = System.currentTimeMillis();
         for (int i = 0; i < list.size(); i++) {
-
-            for (int j = i; j < list.size(); j++) {
-                if (list.get(i) > list.get(j)) {
-                    int temp = list.get(i);
-                    list.set(i, list.get(j));
-                    list.set(j, temp);
+            int minIndex = i;
+            for (int j = i + 1; j < list.size(); j++) {
+                if (list.get(j) < list.get(minIndex)) {
+                    minIndex = j;
                 }
             }
+            int temp = list.get(i);
+            list.set(i, list.get(minIndex));
+            list.set(minIndex, temp);
         }
+        final long endTime = System.currentTimeMillis();
+        timeTaken = endTime - startTime;
         return list;
     }
 
-
-    private boolean isSorted(ArrayList<Integer> list)
-    {
+    private boolean isSorted(ArrayList<Integer> list) {
         boolean sorted = true;
         for (int i = 1; i < list.size(); i++) {
-            if (list.get(i-1).compareTo(list.get(i)) > 0) sorted = false;
+            if (list.get(i - 1).compareTo(list.get(i)) > 0) sorted = false;
         }
         return sorted;
     }
-
 }
