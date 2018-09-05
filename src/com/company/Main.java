@@ -6,9 +6,10 @@ import java.util.Random;
 public class Main {
 
     public static void main(String[] args) {
-	// write your code
+        
+
     }
-    private ArrayList<Integer> generateNumbers(int amount){
+    public ArrayList<Integer> generateNumbers(int amount){
         ArrayList<Integer> numberList = new ArrayList<>();
 
         for (int i = 0; i <amount ; i++) {
