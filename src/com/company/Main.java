@@ -11,26 +11,26 @@ public class Main {
 
     public void run() {
         for (int i = 1; i < 11; i++) {
-            createNewRound(i,25000);
+            createNewRound(i, 25000);
         }
         for (int i = 1; i < 11; i++) {
-            createNewRound(i,50000);
+            createNewRound(i, 50000);
         }
         for (int i = 1; i < 11; i++) {
-            createNewRound(i,100000);
+            createNewRound(i, 100000);
         }
         for (int i = 1; i < 11; i++) {
-            createNewRound(i,200000);
+            createNewRound(i, 200000);
         }
         for (int i = 1; i < 11; i++) {
-            createNewRound(i,400000);
+            createNewRound(i, 400000);
         }
         for (int i = 1; i < 11; i++) {
-            createNewRound(i,800000);
+            createNewRound(i, 800000);
         }
     }
 
-    private void createNewRound(int round, int amount){
+    private void createNewRound(int round, int amount) {
         Number number = new Number();
 
         ArrayList<Integer> randomList;
@@ -51,7 +51,7 @@ public class Main {
         try {
             t1.join();
             t2.join();
-            randomList = mergeShort(list1,list2);
+            randomList = mergeShort(list1, list2);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -61,20 +61,22 @@ public class Main {
         System.out.println("Time taken in ms: " + number.getTimeTaken());
     }
 
-    private ArrayList<Integer>mergeShort(ArrayList<Integer> list1, ArrayList<Integer> list2){
+    private ArrayList<Integer> mergeShort(ArrayList<Integer> list1, ArrayList<Integer> list2) {
         ArrayList<Integer> mergedList = new ArrayList<>();
 
-        int indexList1 = 0;
-        int indexList2 = 0;
-
-        for (int i = 0; i < list1.size()+list2.size(); i++) {
-            if (indexList1 != list1.size() && list1.get(indexList1) < list2.get(indexList2)){
-                mergedList.add(list1.get(indexList1));
-                indexList1++;
-            } else {
-                mergedList.add(list2.get(indexList2));
-                indexList2++;
+        while (!list1.isEmpty() && !list2.isEmpty()) {
+            if (!list1.isEmpty() && list1.get(0) <= list2.get(0)) {
+                mergedList.add(list1.get(0));
+                list1.remove(0);
+            } else if (!list2.isEmpty() && list1.get(0) > list2.get(0)) {
+                mergedList.add(list2.get(0));
+                list2.remove(0);
             }
+        }
+        if (list1.isEmpty()) {
+            mergedList.addAll(list2);
+        } else {
+            mergedList.addAll(list1);
         }
 
         return mergedList;
