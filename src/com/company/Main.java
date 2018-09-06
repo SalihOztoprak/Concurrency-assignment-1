@@ -41,7 +41,7 @@ public class Main {
 
     private ArrayList<Integer>mergeShort(ArrayList<Integer> list1, ArrayList<Integer>list2){
         ArrayList<Integer> mergedList = new ArrayList<>();
-       
+
         return mergedList;
     }
 
