@@ -8,15 +8,39 @@ public class Main {
 
     public static void main(String[] args) {
         new Main().run();
-
     }
 
-    public void run() {
-        ArrayList<Integer> randomList;
-        randomList = generateNumbers(25000);
-        randomList = selectionSort(randomList);
+    private void run() {
+        for (int i = 0; i < 10; i++) {
+            createList(25000);
+        }
 
-        System.out.println(randomList);
+        for (int i = 0; i < 10; i++) {
+            createList(50000);
+        }
+
+        for (int i = 0; i < 10; i++) {
+            createList(100000);
+        }
+
+        for (int i = 0; i < 10; i++) {
+            createList(200000);
+        }
+
+        for (int i = 0; i < 10; i++) {
+            createList(400000);
+        }
+
+        for (int i = 0; i < 10; i++) {
+            createList(800000);
+        }
+    }
+
+    private void createList(int amount){
+        ArrayList<Integer> randomList = generateNumbers(amount);
+        randomList = selectionSort(randomList);
+        System.out.println();
+        System.out.println("New round with amount of " + amount);
         System.out.println("Size of list is: " + randomList.size());
         System.out.println("Is the list sorted: " + isSorted(randomList));
         System.out.println("Time taken in ms: " + timeTaken);
@@ -36,7 +60,7 @@ public class Main {
     }
 
 
-    public ArrayList<Integer> selectionSort(ArrayList<Integer> list) {
+    private ArrayList<Integer> selectionSort(ArrayList<Integer> list) {
         final long startTime = System.currentTimeMillis();
         for (int i = 0; i < list.size(); i++) {
             int minIndex = i;
