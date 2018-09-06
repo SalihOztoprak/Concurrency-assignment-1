@@ -11,11 +11,9 @@ public class Main {
 
     }
 
-    private void run() {
+    public void run() {
         ArrayList<Integer> randomList;
-        int amount = 400000;
-
-        randomList = generateNumbers(amount);
+        randomList = generateNumbers(25000);
         randomList = selectionSort(randomList);
 
         System.out.println(randomList);
@@ -38,17 +36,18 @@ public class Main {
     }
 
 
-    private ArrayList<Integer> selectionSort(ArrayList<Integer> list) {
+    public ArrayList<Integer> selectionSort(ArrayList<Integer> list) {
         final long startTime = System.currentTimeMillis();
         for (int i = 0; i < list.size(); i++) {
-
-            for (int j = i; j < list.size(); j++) {
-                if (list.get(i) > list.get(j)) {
-                    int temp = list.get(i);
-                    list.set(i, list.get(j));
-                    list.set(j, temp);
+            int minIndex = i;
+            for (int j = i + 1; j < list.size(); j++) {
+                if (list.get(j) < list.get(minIndex)) {
+                    minIndex = j;
                 }
             }
+            int temp = list.get(i);
+            list.set(i, list.get(minIndex));
+            list.set(minIndex, temp);
         }
         final long endTime = System.currentTimeMillis();
         timeTaken = endTime - startTime;
