@@ -1,12 +1,14 @@
 package com.company;
 
+
+
 import java.util.ArrayList;
 import java.util.Random;
 
-public class NumberGenerator {
+public class Number {
     private long timeTaken = 0;
 
-    public NumberGenerator() {
+    public Number() {
 
     }
 
@@ -54,4 +56,6 @@ public class NumberGenerator {
     public long getTimeTaken() {
         return timeTaken;
     }
+
+
 }
