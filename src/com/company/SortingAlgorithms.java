@@ -11,7 +11,6 @@ public class SortingAlgorithms {
     }
 
     public ArrayList<Integer> selectionSort(ArrayList<Integer> list) {
-
         final long startTime = System.currentTimeMillis();
         for (int i = 0; i < list.size(); i++) {
             int minIndex = i;
