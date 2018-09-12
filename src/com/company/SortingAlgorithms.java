@@ -2,28 +2,13 @@ package com.company;
 
 
 import java.util.ArrayList;
-import java.util.Random;
 
-public class Number {
+public class SortingAlgorithms {
     private long timeTaken = 0;
 
-    public Number() {
+    public SortingAlgorithms() {
 
     }
-
-
-    public ArrayList<Integer> generateNumbers(int amount) {
-        ArrayList<Integer> numberList = new ArrayList<>();
-        Random rand = new Random();
-
-        for (int i = 0; i < amount; i++) {
-            int randomNumber = rand.nextInt(Integer.MAX_VALUE);
-            numberList.add(randomNumber);
-        }
-
-        return numberList;
-    }
-
 
     public ArrayList<Integer> selectionSort(ArrayList<Integer> list) {
 
@@ -52,10 +37,6 @@ public class Number {
         return sorted;
     }
 
-    public long getTimeTaken() {
-        return timeTaken;
-    }
-
     public ArrayList<Integer> merge(ArrayList<Integer> list1, ArrayList<Integer> list2) {
         ArrayList<Integer> mergedList = new ArrayList<>();
 
@@ -76,4 +57,9 @@ public class Number {
 
         return mergedList;
     }
+
+    public long getTimeTaken() {
+        return timeTaken;
+    }
+
 }
