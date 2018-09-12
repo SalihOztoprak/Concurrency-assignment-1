@@ -1,7 +1,6 @@
 package com.company;
 
 
-
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -57,7 +56,7 @@ public class Number {
         return timeTaken;
     }
 
-    public ArrayList<Integer> mergeShort(ArrayList<Integer> list1, ArrayList<Integer> list2) {
+    public ArrayList<Integer> merge(ArrayList<Integer> list1, ArrayList<Integer> list2) {
         ArrayList<Integer> mergedList = new ArrayList<>();
 
         while (!list1.isEmpty() && !list2.isEmpty()) {

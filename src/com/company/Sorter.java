@@ -19,4 +19,5 @@ public class Sorter implements Runnable {
     public void run() {
         number.selectionSort(list);
     }
+
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Main {
 
+    public static int THRESHOLD = 4000;
 
     public static void main(String[] args) {
         new Main().run();
@@ -11,26 +12,39 @@ public class Main {
 
     public void run() {
         for (int i = 1; i < 11; i++) {
-            createNewRound(i, 25000);
+            opdrachtEen(i, 25000);
         }
         for (int i = 1; i < 11; i++) {
-            createNewRound(i, 50000);
+            opdrachtEen(i, 50000);
         }
         for (int i = 1; i < 11; i++) {
-            createNewRound(i, 100000);
+            opdrachtEen(i, 100000);
         }
         for (int i = 1; i < 11; i++) {
-            createNewRound(i, 200000);
+            opdrachtEen(i, 200000);
         }
         for (int i = 1; i < 11; i++) {
-            createNewRound(i, 400000);
+            opdrachtEen(i, 400000);
         }
         for (int i = 1; i < 11; i++) {
-            createNewRound(i, 800000);
+            opdrachtEen(i, 800000);
         }
     }
 
-    private void createNewRound(int round, int amount) {
+    private void opdrachtEen(int round, int amount) {
+        Number number = new Number();
+        ArrayList<Integer> randomList = number.generateNumbers(amount);
+        randomList = number.selectionSort(randomList);
+
+        System.out.println();
+        System.out.println("[Round " + round + "] Size of list is: " + randomList.size());
+        System.out.println("Is the list sorted: " + number.isSorted(randomList));
+        System.out.println("Time taken in ms: " + number.getTimeTaken());
+
+    }
+
+    private void opdrachtTwee(int round, int amount) {
+
         Number number = new Number();
 
         ArrayList<Integer> randomList;
@@ -51,7 +65,7 @@ public class Main {
         try {
             t1.join();
             t2.join();
-            randomList = number.mergeShort(list1, list2);
+            randomList = number.merge(list1, list2);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -60,7 +74,6 @@ public class Main {
         System.out.println("Is the list sorted: " + number.isSorted(randomList));
         System.out.println("Time taken in ms: " + number.getTimeTaken());
     }
-
 
 
 }
