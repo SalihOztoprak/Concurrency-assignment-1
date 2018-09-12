@@ -57,5 +57,24 @@ public class Number {
         return timeTaken;
     }
 
+    public ArrayList<Integer> mergeShort(ArrayList<Integer> list1, ArrayList<Integer> list2) {
+        ArrayList<Integer> mergedList = new ArrayList<>();
 
+        while (!list1.isEmpty() && !list2.isEmpty()) {
+            if (!list1.isEmpty() && list1.get(0) <= list2.get(0)) {
+                mergedList.add(list1.get(0));
+                list1.remove(0);
+            } else if (!list2.isEmpty() && list1.get(0) > list2.get(0)) {
+                mergedList.add(list2.get(0));
+                list2.remove(0);
+            }
+        }
+        if (list1.isEmpty()) {
+            mergedList.addAll(list2);
+        } else {
+            mergedList.addAll(list1);
+        }
+
+        return mergedList;
+    }
 }

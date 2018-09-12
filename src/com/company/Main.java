@@ -39,6 +39,7 @@ public class Main {
         ArrayList<Integer> list1 = new ArrayList<>(randomList.subList(0, randomList.size() / 2));
         ArrayList<Integer> list2 = new ArrayList<>(randomList.subList(randomList.size() / 2, randomList.size()));
 
+
         Sorter s1 = new Sorter(number, list1);
         Sorter s2 = new Sorter(number, list2);
 
@@ -47,11 +48,10 @@ public class Main {
 
         t1.start();
         t2.start();
-
         try {
             t1.join();
             t2.join();
-            randomList = mergeShort(list1, list2);
+            randomList = number.mergeShort(list1, list2);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -61,25 +61,6 @@ public class Main {
         System.out.println("Time taken in ms: " + number.getTimeTaken());
     }
 
-    private ArrayList<Integer> mergeShort(ArrayList<Integer> list1, ArrayList<Integer> list2) {
-        ArrayList<Integer> mergedList = new ArrayList<>();
 
-        while (!list1.isEmpty() && !list2.isEmpty()) {
-            if (!list1.isEmpty() && list1.get(0) <= list2.get(0)) {
-                mergedList.add(list1.get(0));
-                list1.remove(0);
-            } else if (!list2.isEmpty() && list1.get(0) > list2.get(0)) {
-                mergedList.add(list2.get(0));
-                list2.remove(0);
-            }
-        }
-        if (list1.isEmpty()) {
-            mergedList.addAll(list2);
-        } else {
-            mergedList.addAll(list1);
-        }
-
-        return mergedList;
-    }
 
 }
