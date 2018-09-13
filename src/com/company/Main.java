@@ -1,66 +1,57 @@
 package com.company;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Main {
-
+    public static final int THRESHOLD = 4375;
+    private ArrayList<Long> gem;
 
     public static void main(String[] args) {
         new Main().run();
     }
 
     public void run() {
-        for (int i = 1; i < 11; i++) {
-            createNewRound(i, 25000);
+        gem = new ArrayList<>();
+
+        for (int i = 0; i < 5; i++) {
+            opdrachtDrie(400000);
         }
-        for (int i = 1; i < 11; i++) {
-            createNewRound(i, 50000);
-        }
-        for (int i = 1; i < 11; i++) {
-            createNewRound(i, 100000);
-        }
-        for (int i = 1; i < 11; i++) {
-            createNewRound(i, 200000);
-        }
-        for (int i = 1; i < 11; i++) {
-            createNewRound(i, 400000);
-        }
-        for (int i = 1; i < 11; i++) {
-            createNewRound(i, 800000);
-        }
+
+        double sum = 0;
+
+        for (long d : gem) sum += d;
+
+        double avg = sum / gem.size();
+
+        System.out.println(avg);
     }
 
-    private void createNewRound(int round, int amount) {
+    private void opdrachtDrie(int amount) {
         Number number = new Number();
-
         ArrayList<Integer> randomList;
         randomList = number.generateNumbers(amount);
 
-        ArrayList<Integer> list1 = new ArrayList<>(randomList.subList(0, randomList.size() / 2));
-        ArrayList<Integer> list2 = new ArrayList<>(randomList.subList(randomList.size() / 2, randomList.size()));
+        final long startTime = System.currentTimeMillis();
 
-
-        Sorter s1 = new Sorter(number, list1);
-        Sorter s2 = new Sorter(number, list2);
-
-        Thread t1 = new Thread(s1);
-        Thread t2 = new Thread(s2);
-
-        t1.start();
-        t2.start();
+        Sorter sorter = new Sorter(number,randomList);
+        Thread thread = new Thread(sorter);
+        thread.start();
         try {
-            t1.join();
-            t2.join();
-            randomList = number.mergeShort(list1, list2);
+            thread.join();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        randomList = sorter.getList();
+
+        final long endTime = System.currentTimeMillis();
+        long timeTaken = endTime - startTime;
+
         System.out.println();
-        System.out.println("[Round " + round + "] Size of list is: " + randomList.size());
+        System.out.println("Size of list is: " + randomList.size());
         System.out.println("Is the list sorted: " + number.isSorted(randomList));
-        System.out.println("Time taken in ms: " + number.getTimeTaken());
+        System.out.println("Time taken in ms: " + timeTaken);
+        gem.add(timeTaken);
     }
-
-
 
 }
