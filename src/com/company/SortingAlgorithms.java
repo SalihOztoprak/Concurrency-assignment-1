@@ -1,32 +1,17 @@
 package com.company;
 
 
-
 import java.util.ArrayList;
-import java.util.Random;
 
-public class Number {
+public class SortingAlgorithms {
     private long timeTaken = 0;
 
-    public Number() {
+    public SortingAlgorithms() {
 
     }
-
-
-    public ArrayList<Integer> generateNumbers(int amount) {
-        ArrayList<Integer> numberList = new ArrayList<>();
-        Random rand = new Random();
-
-        for (int i = 0; i < amount; i++) {
-            int randomNumber = rand.nextInt(Integer.MAX_VALUE);
-            numberList.add(randomNumber);
-        }
-
-        return numberList;
-    }
-
 
     public ArrayList<Integer> selectionSort(ArrayList<Integer> list) {
+        final long startTime = System.currentTimeMillis();
         for (int i = 0; i < list.size(); i++) {
             int minIndex = i;
             for (int j = i + 1; j < list.size(); j++) {
@@ -38,6 +23,8 @@ public class Number {
             list.set(i, list.get(minIndex));
             list.set(minIndex, temp);
         }
+        final long endTime = System.currentTimeMillis();
+        timeTaken = endTime - startTime;
         return list;
     }
 
@@ -69,4 +56,9 @@ public class Number {
 
         return mergedList;
     }
+
+    public long getTimeTaken() {
+        return timeTaken;
+    }
+
 }

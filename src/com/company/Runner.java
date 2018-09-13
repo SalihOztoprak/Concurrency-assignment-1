@@ -1,15 +1,15 @@
 package com.company;
 
-
 import java.util.ArrayList;
 
-public class Sorter implements Runnable {
 
-    private Number number;
+public class Runner implements Runnable {
+
+    private SortingAlgorithms sortingAlgorithms;
     private ArrayList<Integer> list;
 
-    public Sorter(Number ng, ArrayList<Integer> list) {
-        this.number = ng;
+    public Runner(SortingAlgorithms sortingAlgorithms, ArrayList<Integer> list) {
+        this.sortingAlgorithms = sortingAlgorithms;
         this.list = list;
     }
 
@@ -19,11 +19,11 @@ public class Sorter implements Runnable {
             ArrayList<Integer> list1 = new ArrayList<>(list.subList(0, list.size() / 2));
             ArrayList<Integer> list2 = new ArrayList<>(list.subList(list.size() / 2, list.size()));
 
-            Sorter s1 = new Sorter(number, list1);
-            Sorter s2 = new Sorter(number, list2);
+            Runner r1 = new Runner(sortingAlgorithms, list1);
+            Runner r2 = new Runner(sortingAlgorithms, list2);
 
-            Thread t1 = new Thread(s1);
-            Thread t2 = new Thread(s2);
+            Thread t1 = new Thread(r1);
+            Thread t2 = new Thread(r2);
 
             t1.start();
             t2.start();
@@ -36,14 +36,13 @@ public class Sorter implements Runnable {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            list1 = s1.getList();
-            list2 = s2.getList();
+            list1 = r1.getList();
+            list2 = r2.getList();
 
-            this.list = number.merge(list1, list2);
+            this.list = sortingAlgorithms.merge(list1, list2);
         } else {
-            list = number.selectionSort(list);
+            list = sortingAlgorithms.selectionSort(list);
         }
-
     }
 
     public ArrayList<Integer> getList() {
