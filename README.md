@@ -1,2 +1,3 @@
-# Concurrency-opdracht-1
-Inlever opdrachten concurrency
+# Concurrency
+Hier zijn de opdrachten te vinden van concurrency
+Gemaakt door Salih Öztoprak & Thomas Tunc
